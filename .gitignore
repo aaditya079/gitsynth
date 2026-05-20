@@ -1,0 +1,4 @@
+# Ignore local README customizer builder app files
+index.html
+style.css
+app.js
