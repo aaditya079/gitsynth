@@ -2,7 +2,7 @@
 <h3 align="center">AI/DS Focused | Frontend Driven</h3>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?size=25&duration=3000&color=00F7FF&center=true&vCenter=true&width=600&lines=Frontend+Developer%2C+AI+%26+Data+Science+Student%2C+Building+ImgSeek" />
+  <img src="https://readme-typing-svg.herokuapp.com?size=25&duration=3000&color=00F7FF&center=true&vCenter=true&width=600&lines=Frontend+Developer;AI+%26+Data+Science+Student;Building+ImgSeek" />
 </p>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif" width="500"/>
