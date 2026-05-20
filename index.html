@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitSynth - Premium Profile Builder</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Glows -->
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <header class="app-header">
+    <div class="logo">
+      <span class="icon">🚀</span>
+      <h1>Git<span class="accent">Synth</span></h1>
+    </div>
+    <div class="tagline">Premium stats-first profile layout builder</div>
+  </header>
+
+  <main class="app-container">
+    <!-- Customizer Form Panel -->
+    <section class="panel customizer-panel">
+      <div class="panel-header">
+        <h2>🛠️ Profile Customizer</h2>
+        <p>Edit fields below to dynamically generate your README.</p>
+      </div>
+
+      <!-- Navigation Tabs inside Form -->
+      <div class="form-tabs">
+        <button class="tab-btn active" data-form-tab="identity">Identity</button>
+        <button class="tab-btn" data-form-tab="about">About & Goals</button>
+        <button class="tab-btn" data-form-tab="tech">Tech Stack</button>
+        <button class="tab-btn" data-form-tab="stats">Stats & Socials</button>
+      </div>
+
+      <form id="readme-form" onsubmit="event.preventDefault();">
+        <!-- Tab 1: Identity -->
+        <div class="form-tab-content active" id="tab-identity">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="e.g. Aaditya Srinivasan K S" value="Aaditya Srinivasan K S">
+          </div>
+          <div class="form-group">
+            <label for="headline">Sub-Headline</label>
+            <input type="text" id="headline" placeholder="e.g. AI/DS Focused | Frontend Driven" value="AI/DS Focused | Frontend Driven">
+          </div>
+          <div class="form-group">
+            <label for="typingLines">Typing SVG Animated Text (comma separated)</label>
+            <input type="text" id="typingLines" placeholder="Line 1, Line 2, Line 3" value="Frontend Developer, AI & Data Science Student, Building ImgSeek">
+            <span class="help-text">Shows as an animated typing text block at the top.</span>
+          </div>
+          <div class="form-group">
+            <label for="gifUrl">Featured Header GIF / Image URL</label>
+            <input type="text" id="gifUrl" placeholder="Image link" value="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif">
+          </div>
+        </div>
+
+        <!-- Tab 2: About & Goals -->
+        <div class="form-tab-content" id="tab-about">
+          <div class="form-group">
+            <label for="bio">Short Bio Intro</label>
+            <textarea id="bio" rows="2" placeholder="Tell visitors about yourself...">My name is Aaditya Srinivasan, and I'm an AI and Data Science student.</textarea>
+          </div>
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label for="bullet1">🎓 Education / Status</label>
+              <input type="text" id="bullet1" value="B.Tech Student at SRM Madurai College of Engineering and Technology">
+            </div>
+            <div class="form-group">
+              <label for="bullet2">🧠 Core Interest / Specialty</label>
+              <input type="text" id="bullet2" value="Aspiring AI/DS Engineer">
+            </div>
+          </div>
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label for="bullet3">🎨 Frontend Development</label>
+              <input type="text" id="bullet3" value="Frontend Development">
+            </div>
+            <div class="form-group">
+              <label for="bullet4">🌱 Currently Learning</label>
+              <input type="text" id="bullet4" value="Currently learning advanced Frontend Systems & Data Science">
+            </div>
+          </div>
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label for="bullet5">🔨 Current Projects</label>
+              <input type="text" id="bullet5" value="Currently building: ImgSeek">
+            </div>
+            <div class="form-group">
+              <label for="bullet6">🎯 Ultimate Goal</label>
+              <input type="text" id="bullet6" value="Goal: Build intelligent, user-first applications">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>🛣️ 2026 Roadmap / Current Year Focus Areas</label>
+            <div id="roadmap-container">
+              <div class="roadmap-item">
+                <input type="text" class="roadmap-input" value="Full Stack Development">
+                <button class="remove-btn" onclick="removeRoadmapItem(this)">×</button>
+              </div>
+              <div class="roadmap-item">
+                <input type="text" class="roadmap-input" value="Polishing Data Structures and Algorithms">
+                <button class="remove-btn" onclick="removeRoadmapItem(this)">×</button>
+              </div>
+              <div class="roadmap-item">
+                <input type="text" class="roadmap-input" value="Advanced Machine Learning">
+                <button class="remove-btn" onclick="removeRoadmapItem(this)">×</button>
+              </div>
+              <div class="roadmap-item">
+                <input type="text" class="roadmap-input" value="Artificial Intelligence & Deep Learning">
+                <button class="remove-btn" onclick="removeRoadmapItem(this)">×</button>
+              </div>
+            </div>
+            <button class="add-btn" onclick="addRoadmapItem()">+ Add Roadmap Item</button>
+          </div>
+          <div class="form-group">
+            <label for="quote">Inspiring Quote / Bio Tagline</label>
+            <input type="text" id="quote" value="Reze ma Queen 🥀">
+          </div>
+        </div>
+
+        <!-- Tab 3: Tech Stack -->
+        <div class="form-tab-content" id="tab-tech">
+          <p class="section-desc">Select technologies to display as beautiful shields.io badges in your tech stack section.</p>
+          
+          <div class="tech-category">
+            <h3>💻 Languages</h3>
+            <div class="tech-grid" id="languages-grid">
+              <!-- Dynamically populated in JS -->
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <h3>⚙️ Backend & Frameworks</h3>
+            <div class="tech-grid" id="backend-grid">
+              <!-- Dynamically populated in JS -->
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <h3>🗄️ Databases</h3>
+            <div class="tech-grid" id="databases-grid">
+              <!-- Dynamically populated in JS -->
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <h3>🎨 Frontend & Tools</h3>
+            <div class="tech-grid" id="frontend-grid">
+              <!-- Dynamically populated in JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Stats & Socials -->
+        <div class="form-tab-content" id="tab-stats">
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label for="githubUsername">GitHub Username</label>
+              <input type="text" id="githubUsername" placeholder="e.g. aaditya079" value="aaditya079">
+            </div>
+            <div class="form-group">
+              <label for="leetcodeUsername">LeetCode Username</label>
+              <input type="text" id="leetcodeUsername" placeholder="e.g. shriyansh_raut" value="">
+            </div>
+          </div>
+          <div class="form-group-grid">
+            <div class="form-group">
+              <label for="gmailAddress">Gmail Address</label>
+              <input type="email" id="gmailAddress" placeholder="e.g. yourname@gmail.com" value="aadityasrinivasan079@gmail.com">
+            </div>
+            <div class="form-group">
+              <label for="countdownYear">Target Countdown Year</label>
+              <input type="number" id="countdownYear" value="2026" min="2024" max="2050">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="snakeUrl">Snake Animation SVG URL (GitHub Actions generated output)</label>
+            <input type="text" id="snakeUrl" placeholder="Snake SVG link" value="https://raw.githubusercontent.com/aaditya079/aaditya079/output/github-contribution-grid-snake.svg">
+            <span class="help-text">Can be set to a custom path or left as default. (Requires setting up the Platane contribution-snake github workflow!)</span>
+          </div>
+          <div class="stats-switches">
+            <label class="switch-container">
+              <input type="checkbox" id="showLeetCode">
+              <span class="switch-slider"></span>
+              Show LeetCode Stats Card
+            </label>
+            <label class="switch-container">
+              <input type="checkbox" id="showGitHubStats">
+              <span class="switch-slider"></span>
+              Show GitHub Stats Card
+            </label>
+            <label class="switch-container">
+              <input type="checkbox" id="showActivityGraph" checked>
+              <span class="switch-slider"></span>
+              Show Contribution Activity Graph
+            </label>
+            <label class="switch-container">
+              <input type="checkbox" id="showSnake">
+              <span class="switch-slider"></span>
+              Show Contribution Snake Graphic
+            </label>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Live Preview Panel -->
+    <section class="panel preview-panel">
+      <div class="panel-header preview-header">
+        <h2>👁️ Live Preview & Output</h2>
+        <div class="action-buttons">
+          <button class="action-btn copy-btn" id="btn-copy">📋 Copy Markdown</button>
+          <button class="action-btn download-btn" id="btn-download">💾 Download</button>
+        </div>
+      </div>
+
+      <!-- Preview Tabs -->
+      <div class="preview-tabs">
+        <button class="preview-tab-btn active" data-preview-tab="visual">Visual Preview</button>
+        <button class="preview-tab-btn" data-preview-tab="markdown">Raw Markdown</button>
+      </div>
+
+      <!-- Tab Content: Visual Preview -->
+      <div class="preview-tab-content active" id="preview-visual">
+        <div class="github-card-simulation">
+          <div class="simulation-header">
+            <div class="circle red"></div>
+            <div class="circle yellow"></div>
+            <div class="circle green"></div>
+            <div class="file-name">README.md</div>
+          </div>
+          <div class="simulation-body markdown-body" id="visual-render-area">
+            <!-- Simulated Render dynamically populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Raw Markdown -->
+      <div class="preview-tab-content" id="preview-markdown">
+        <div class="code-container">
+          <pre><code id="markdown-code-area" class="language-markdown"></code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer-info">
+    <p>Crafted with 💜 for a premium Developer Experience. Make your GitHub profile shine!</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

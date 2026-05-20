@@ -1,4 +1,3 @@
-# Ignore local README customizer builder app files
-index.html
-style.css
-app.js
+# Local environment / system files
+.DS_Store
+Thumbs.db
