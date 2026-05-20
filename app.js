@@ -132,6 +132,57 @@ function addRoadmapItem() {
   generateReadme();
 }
 
+// Dynamic List Builder Logic (Projects Showcase)
+function removeProjectItem(btn) {
+  const item = btn.closest('.project-item-form-card');
+  if (item) {
+    item.remove();
+    generateReadme();
+  }
+}
+
+function addProjectItem(name = '', description = '', tags = '', link = '') {
+  const container = document.getElementById('projects-container');
+  if (!container) return;
+  const div = document.createElement('div');
+  div.className = 'project-item-form-card';
+  div.innerHTML = `
+    <div class="project-form-header">
+      <h4>Project Details</h4>
+      <button type="button" class="remove-btn" onclick="removeProjectItem(this)">×</button>
+    </div>
+    <div class="form-group-grid">
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" class="project-name-input" placeholder="e.g. ImgSeek" value="${name}">
+      </div>
+      <div class="form-group">
+        <label>Project Link (URL)</label>
+        <input type="text" class="project-link-input" placeholder="e.g. https://github.com/..." value="${link}">
+      </div>
+    </div>
+    <div class="form-group-grid">
+      <div class="form-group">
+        <label>Tech Tags (comma separated)</label>
+        <input type="text" class="project-tags-input" placeholder="e.g. Python, Flask, React" value="${tags}">
+      </div>
+      <div class="form-group">
+        <label>Short Description</label>
+        <input type="text" class="project-desc-input" placeholder="e.g. AI-driven image search engine..." value="${description}">
+      </div>
+    </div>
+  `;
+  
+  // Register change events on all new inputs
+  div.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', generateReadme);
+    input.addEventListener('change', generateReadme);
+  });
+  
+  container.appendChild(div);
+  generateReadme();
+}
+
 // 5. Generate Markdown and Update Sim Preview
 function generateReadme() {
   // Pull Form Values
@@ -226,6 +277,44 @@ function generateReadme() {
   }
 
   md += `---\n\n`;
+
+  // Pull Projects values
+  const projectItems = [];
+  document.querySelectorAll('.project-item-form-card').forEach(card => {
+    const name = card.querySelector('.project-name-input').value.trim();
+    const link = card.querySelector('.project-link-input').value.trim();
+    const tags = card.querySelector('.project-tags-input').value.trim();
+    const desc = card.querySelector('.project-desc-input').value.trim();
+    if (name) {
+      projectItems.push({ name, link, tags, desc });
+    }
+  });
+
+  if (projectItems.length > 0) {
+    md += `## 🛠️ Projects Showcase\n\n`;
+    projectItems.forEach(proj => {
+      if (proj.link) {
+        md += `### 🚀 [${proj.name}](${proj.link})\n`;
+      } else {
+        md += `### 🚀 ${proj.name}\n`;
+      }
+      if (proj.desc) {
+        md += `> ${proj.desc}\n`;
+      }
+      if (proj.tags) {
+        const tagBadges = proj.tags.split(',')
+          .map(t => t.trim())
+          .filter(t => t.length > 0)
+          .map(t => `\`${t}\``)
+          .join(' ');
+        if (tagBadges) {
+          md += `>\n> ${tagBadges}\n`;
+        }
+      }
+      md += `\n`;
+    });
+    md += `---\n\n`;
+  }
 
   if (gmailAddress) {
     md += `## 🔗 Connect With Me\n\n`;
@@ -339,6 +428,33 @@ function generateReadme() {
   }
 
   html += `<hr/>`;
+
+  if (projectItems.length > 0) {
+    html += `<h2>🛠️ Projects Showcase</h2>`;
+    html += `<div class="sim-projects-grid">`;
+    projectItems.forEach(proj => {
+      const displayTags = proj.tags ? proj.tags.split(',')
+        .map(t => t.trim())
+        .filter(t => t.length > 0)
+        .map(t => `<span class="sim-project-tag">${t}</span>`)
+        .join('') : '';
+
+      html += `
+        <div class="sim-project-card">
+          <div>
+            <div class="sim-project-header">
+              <span class="sim-project-icon">🚀</span>
+              <h4>${proj.link ? `<a href="${proj.link}" target="_blank">${proj.name}</a>` : proj.name}</h4>
+            </div>
+            ${proj.desc ? `<p class="sim-project-desc">${proj.desc}</p>` : ''}
+          </div>
+          ${displayTags ? `<div class="sim-project-tags">${displayTags}</div>` : ''}
+        </div>
+      `;
+    });
+    html += `</div>`;
+    html += `<hr/>`;
+  }
 
   if (gmailAddress) {
     html += `<h2>🔗 Connect With Me</h2>`;
@@ -477,6 +593,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Action Buttons
   document.getElementById('btn-copy').addEventListener('click', copyToClipboard);
   document.getElementById('btn-download').addEventListener('click', downloadReadme);
+
+  // Initialize default projects
+  addProjectItem(
+    'ImgSeek',
+    'AI-driven semantic image search engine powered by CLIP and Python.',
+    'Python, Flask, React, PyTorch',
+    'https://github.com/aaditya/imgseek'
+  );
+  addProjectItem(
+    'GitSynth',
+    'Premium, glassmorphic GitHub Profile README Builder with live simulation.',
+    'HTML5, CSS3, JavaScript',
+    'https://github.com/aaditya079/gitsynth'
+  );
 
   // Initial Run
   generateReadme();

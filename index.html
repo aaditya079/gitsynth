@@ -35,6 +35,7 @@
       <div class="form-tabs">
         <button class="tab-btn active" data-form-tab="identity">Identity</button>
         <button class="tab-btn" data-form-tab="about">About & Goals</button>
+        <button class="tab-btn" data-form-tab="projects">Projects</button>
         <button class="tab-btn" data-form-tab="tech">Tech Stack</button>
         <button class="tab-btn" data-form-tab="stats">Stats & Socials</button>
       </div>
@@ -125,6 +126,15 @@
           </div>
         </div>
 
+        <!-- Tab: Projects Showcase -->
+        <div class="form-tab-content" id="tab-projects">
+          <p class="section-desc">Add featured projects with descriptions and links to showcase on your profile README.</p>
+          <div id="projects-container">
+            <!-- Dynamically populated in JS -->
+          </div>
+          <button class="add-btn" type="button" onclick="addProjectItem()">+ Add Featured Project</button>
+        </div>
+
         <!-- Tab 3: Tech Stack -->
         <div class="form-tab-content" id="tab-tech">
           <p class="section-desc">Select technologies to display as beautiful shields.io badges in your tech stack section.</p>
@@ -163,7 +173,7 @@
           <div class="form-group-grid">
             <div class="form-group">
               <label for="githubUsername">GitHub Username</label>
-              <input type="text" id="githubUsername" placeholder="e.g. aaditya079" value="aaditya079">
+              <input type="text" id="githubUsername" placeholder="e.g. aaditya" value="aaditya">
             </div>
             <div class="form-group">
               <label for="leetcodeUsername">LeetCode Username</label>
@@ -182,7 +192,7 @@
           </div>
           <div class="form-group">
             <label for="snakeUrl">Snake Animation SVG URL (GitHub Actions generated output)</label>
-            <input type="text" id="snakeUrl" placeholder="Snake SVG link" value="https://raw.githubusercontent.com/aaditya079/aaditya079/output/github-contribution-grid-snake.svg">
+            <input type="text" id="snakeUrl" placeholder="Snake SVG link" value="https://raw.githubusercontent.com/aaditya/aaditya/output/github-contribution-grid-snake.svg">
             <span class="help-text">Can be set to a custom path or left as default. (Requires setting up the Platane contribution-snake github workflow!)</span>
           </div>
           <div class="stats-switches">
