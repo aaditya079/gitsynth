@@ -44,6 +44,27 @@
         <!-- Tab 1: Identity -->
         <div class="form-tab-content active" id="tab-identity">
           <div class="form-group">
+            <label>🌌 Morphic App Theme</label>
+            <div class="theme-selector-container">
+              <button type="button" class="theme-select-btn active" data-theme="cyberpunk">
+                <span class="theme-color-dot" style="color: #00F7FF; background-color: #00F7FF;"></span>
+                Cyberpunk
+              </button>
+              <button type="button" class="theme-select-btn" data-theme="emerald">
+                <span class="theme-color-dot" style="color: #00F5D4; background-color: #00F5D4;"></span>
+                Emerald
+              </button>
+              <button type="button" class="theme-select-btn" data-theme="amethyst">
+                <span class="theme-color-dot" style="color: #FF007F; background-color: #FF007F;"></span>
+                Amethyst
+              </button>
+              <button type="button" class="theme-select-btn" data-theme="solar">
+                <span class="theme-color-dot" style="color: #FFB703; background-color: #FFB703;"></span>
+                Solar
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" placeholder="e.g. Aaditya Srinivasan K S" value="Aaditya Srinivasan K S">
           </div>
@@ -139,6 +160,12 @@
         <div class="form-tab-content" id="tab-tech">
           <p class="section-desc">Select technologies to display as beautiful shields.io badges in your tech stack section.</p>
           
+          <!-- Live Search Bar -->
+          <div class="tech-search-bar">
+            <span class="tech-search-icon">🔍</span>
+            <input type="text" id="tech-search" placeholder="Search tech stack (e.g. React, Python, Node)...">
+          </div>
+
           <div class="tech-category">
             <h3>💻 Languages</h3>
             <div class="tech-grid" id="languages-grid">
@@ -166,6 +193,31 @@
               <!-- Dynamically populated in JS -->
             </div>
           </div>
+
+          <!-- Custom Tech Badge Builder -->
+          <div class="custom-badge-builder">
+            <h4>⚡ Add Custom Tech Badge</h4>
+            <div class="form-group-grid">
+              <div class="form-group">
+                <label for="customTechName">Badge Label / Tech Name</label>
+                <input type="text" id="customTechName" placeholder="e.g. Next.js, Astro">
+              </div>
+              <div class="form-group">
+                <label for="customTechColor">Badge Hex Color</label>
+                <input type="text" id="customTechColor" placeholder="e.g. 000000 or FF3E00 (no #)">
+              </div>
+            </div>
+            <div class="form-group-grid">
+              <div class="form-group">
+                <label for="customTechLogo">SimpleIcon Logo Name (optional)</label>
+                <input type="text" id="customTechLogo" placeholder="e.g. nextdotjs, svelte">
+                <span class="help-text">Check <a href="https://simpleicons.org" target="_blank" style="color: var(--accent-cyan);">simpleicons.org</a> for official logo names.</span>
+              </div>
+              <div class="form-group" style="justify-content: flex-end; margin-bottom: 0;">
+                <button type="button" class="add-btn" id="btn-add-custom-tech" style="height: 38px; border-style: solid;">+ Add Custom Tech</button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Tab 4: Stats & Socials -->
@@ -186,8 +238,21 @@
               <input type="email" id="gmailAddress" placeholder="e.g. yourname@gmail.com" value="aadityasrinivasan079@gmail.com">
             </div>
             <div class="form-group">
+              <label for="wakatimeUsername">WakaTime Username</label>
+              <input type="text" id="wakatimeUsername" placeholder="e.g. aaditya" value="">
+            </div>
+          </div>
+          <div class="form-group-grid">
+            <div class="form-group">
               <label for="countdownYear">Target Countdown Year</label>
               <input type="number" id="countdownYear" value="2026" min="2024" max="2050">
+            </div>
+            <div class="form-group">
+              <label for="statsLayout">Stats Cards Layout</label>
+              <select id="statsLayout" style="background-color: var(--input-bg); border: 1px solid var(--input-border); border-radius: 10px; color: #FFF; padding: 0.75rem 1rem; font-family: 'Inter', sans-serif; font-size: 0.95rem; width: 100%;">
+                <option value="side-by-side" selected>Side by Side</option>
+                <option value="stacked">Vertical Stack</option>
+              </select>
             </div>
           </div>
           <div class="form-group">
@@ -197,6 +262,11 @@
           </div>
           <div class="stats-switches">
             <label class="switch-container">
+              <input type="checkbox" id="showTrophies" checked>
+              <span class="switch-slider"></span>
+              Show GitHub Trophies Grid
+            </label>
+            <label class="switch-container">
               <input type="checkbox" id="showLeetCode">
               <span class="switch-slider"></span>
               Show LeetCode Stats Card
@@ -205,6 +275,11 @@
               <input type="checkbox" id="showGitHubStats">
               <span class="switch-slider"></span>
               Show GitHub Stats Card
+            </label>
+            <label class="switch-container">
+              <input type="checkbox" id="showWakaTime">
+              <span class="switch-slider"></span>
+              Show WakaTime Coding Card
             </label>
             <label class="switch-container">
               <input type="checkbox" id="showActivityGraph" checked>
@@ -244,10 +319,66 @@
             <div class="circle red"></div>
             <div class="circle yellow"></div>
             <div class="circle green"></div>
-            <div class="file-name">README.md</div>
+            <div class="file-name">https://github.com/profile</div>
           </div>
-          <div class="simulation-body markdown-body" id="visual-render-area">
-            <!-- Simulated Render dynamically populated by JS -->
+          
+          <!-- High-Fidelity GitHub Profile Page Simulation -->
+          <div class="github-profile-layout">
+            <!-- Left Sidebar -->
+            <aside class="github-sidebar">
+              <div class="sim-avatar-container" id="sim-avatar">
+                👤
+              </div>
+              <div class="sim-user-info">
+                <h3 id="sim-display-name">Aaditya Srinivasan K S</h3>
+                <span class="sim-username" id="sim-display-username">@aaditya</span>
+              </div>
+              <button type="button" class="sim-follow-btn">Follow</button>
+              
+              <div class="sim-stats-meta">
+                <div class="sim-meta-item">
+                  👥 <strong>137</strong> followers · <strong>42</strong> following
+                </div>
+                <div class="sim-meta-item" id="sim-meta-location">
+                  📍 Madurai, India
+                </div>
+                <div class="sim-meta-item" id="sim-meta-email">
+                  ✉️ email@domain.com
+                </div>
+              </div>
+            </aside>
+            
+            <!-- Right Panel -->
+            <main class="github-main-panel">
+              <nav class="sim-nav-tabs">
+                <div class="sim-nav-tab active">
+                  📖 Overview
+                </div>
+                <div class="sim-nav-tab">
+                  🗄️ Repositories <span class="sim-nav-tab-badge">12</span>
+                </div>
+                <div class="sim-nav-tab">
+                  📋 Projects
+                </div>
+                <div class="sim-nav-tab">
+                  📦 Packages
+                </div>
+                <div class="sim-nav-tab">
+                  ⭐️ Stars <span class="sim-nav-tab-badge">84</span>
+                </div>
+              </nav>
+              
+              <!-- README Container -->
+              <div class="sim-readme-container">
+                <div class="sim-readme-header">
+                  <span class="sim-readme-title" id="sim-readme-title-label">📝 username / README.md</span>
+                  <span style="font-size: 0.75rem; color: #8b949e;">preview</span>
+                </div>
+                <div class="sim-readme-body markdown-body" id="visual-render-area">
+                  <!-- Simulated Render dynamically populated by JS -->
+                </div>
+              </div>
+            </main>
           </div>
         </div>
       </div>
@@ -264,6 +395,12 @@
   <footer class="app-footer-info">
     <p>Crafted with 💜 for a premium Developer Experience. Make your GitHub profile shine!</p>
   </footer>
+
+  <!-- Floating Copy Toast -->
+  <div id="copy-toast" class="copy-toast">
+    <span class="toast-icon">✨</span>
+    <span>Markdown copied successfully to clipboard!</span>
+  </div>
 
   <script src="app.js"></script>
 </body>

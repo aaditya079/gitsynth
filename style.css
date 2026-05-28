@@ -779,3 +779,384 @@ textarea {
   position: relative;
   z-index: 10;
 }
+
+/* --- PREMIUM THEMES STYLING --- */
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.theme-cyberpunk {
+  --bg-color: #080A16;
+  --panel-bg: rgba(16, 20, 38, 0.6);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --accent-cyan: #00F7FF;
+  --accent-purple: #9D4EDD;
+  --accent-cyan-glow: rgba(0, 247, 255, 0.3);
+  --accent-purple-glow: rgba(157, 78, 221, 0.4);
+}
+
+body.theme-emerald {
+  --bg-color: #040909;
+  --panel-bg: rgba(10, 26, 25, 0.65);
+  --panel-border: rgba(255, 255, 255, 0.07);
+  --accent-cyan: #00F5D4;
+  --accent-purple: #00B4D8;
+  --accent-cyan-glow: rgba(0, 245, 212, 0.3);
+  --accent-purple-glow: rgba(0, 180, 216, 0.4);
+}
+
+body.theme-amethyst {
+  --bg-color: #0a0410;
+  --panel-bg: rgba(24, 8, 38, 0.6);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --accent-cyan: #FF007F;
+  --accent-purple: #7B2CBF;
+  --accent-cyan-glow: rgba(255, 0, 127, 0.3);
+  --accent-purple-glow: rgba(123, 44, 191, 0.4);
+}
+
+body.theme-solar {
+  --bg-color: #0f0a04;
+  --panel-bg: rgba(32, 20, 8, 0.65);
+  --panel-border: rgba(255, 255, 255, 0.07);
+  --accent-cyan: #FFB703;
+  --accent-purple: #FB8500;
+  --accent-cyan-glow: rgba(255, 183, 3, 0.3);
+  --accent-purple-glow: rgba(251, 133, 0, 0.4);
+}
+
+/* Theme Selector UI */
+.theme-selector-container {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.theme-select-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 0.6rem 0.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: var(--transition-smooth);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.theme-select-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #FFF;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.theme-select-btn.active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-cyan);
+  color: #FFF;
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
+}
+
+.theme-color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* --- SEARCH & CUSTOM BADGES STYLING --- */
+.tech-search-bar {
+  margin-bottom: 1.25rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tech-search-bar input {
+  padding-left: 2.5rem;
+}
+
+.tech-search-icon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 1rem;
+}
+
+.custom-badge-builder {
+  background-color: rgba(255, 255, 255, 0.015);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  transition: var(--transition-smooth);
+}
+
+.custom-badge-builder:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.custom-badge-builder h4 {
+  font-size: 0.9rem;
+  color: #FFF;
+  margin-bottom: 1rem;
+  font-family: 'Outfit', sans-serif;
+  border-left: 3px solid var(--accent-purple);
+  padding-left: 0.5rem;
+}
+
+/* --- NEON COPY TOAST SYSTEM --- */
+.copy-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(8, 12, 28, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 12px;
+  padding: 0.85rem 1.5rem;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 0 20px var(--accent-cyan-glow);
+  z-index: 9999;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.copy-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.copy-toast .toast-icon {
+  color: var(--accent-cyan);
+  font-size: 1.2rem;
+  animation: pulseNeon 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseNeon {
+  0%, 100% { filter: drop-shadow(0 0 2px var(--accent-cyan-glow)); }
+  50% { filter: drop-shadow(0 0 8px var(--accent-cyan)); }
+}
+
+/* --- HIGH-FIDELITY GITHUB PROFILE PAGE SIMULATION --- */
+.github-profile-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex-grow: 1;
+  background-color: var(--card-simulation-bg);
+}
+
+@media (max-width: 820px) {
+  .github-profile-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+/* Left Sidebar Simulation */
+.github-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sim-avatar-container {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: #FFF;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
+}
+
+.sim-avatar-container::after {
+  content: "✏️";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.65);
+  font-size: 0.9rem;
+  padding: 0.35rem 0;
+  text-align: center;
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.sim-avatar-container:hover::after {
+  opacity: 1;
+}
+
+.sim-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-user-info h3 {
+  font-size: 1.35rem !important;
+  font-weight: 600;
+  color: #f0f6fc;
+  margin: 0 !important;
+  text-align: left !important;
+  border-bottom: none !important;
+}
+
+.sim-user-info .sim-username {
+  font-size: 0.9rem;
+  color: #8b949e;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+.sim-follow-btn {
+  background-color: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  border-radius: 6px;
+  padding: 0.35rem 0;
+  width: 100%;
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition-smooth);
+  outline: none;
+}
+
+.sim-follow-btn:hover {
+  background-color: #30363d;
+  border-color: #8b949e;
+}
+
+.sim-stats-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #8b949e;
+  border-top: 1px solid #21262d;
+  border-bottom: 1px solid #21262d;
+  padding: 0.75rem 0;
+}
+
+.sim-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Right Main Panel Simulation */
+.github-main-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sim-nav-tabs {
+  display: flex;
+  gap: 1.25rem;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 0.3rem;
+  overflow-x: auto;
+}
+
+.sim-nav-tab {
+  font-size: 0.85rem;
+  color: #c9d1d9;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.sim-nav-tab.active {
+  font-weight: 600;
+  border-bottom-color: #f78166;
+  color: #f0f6fc;
+}
+
+.sim-nav-tab-badge {
+  background-color: #30363d;
+  color: #c9d1d9;
+  font-size: 0.72rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 10px;
+}
+
+.sim-readme-container {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background-color: #0d1117;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-readme-header {
+  background-color: #161b22;
+  border-bottom: 1px solid #30363d;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.sim-readme-title {
+  font-size: 0.8rem;
+  color: #c9d1d9;
+  font-family: 'Fira Code', monospace;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+.sim-readme-body {
+  padding: 2rem;
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+.sim-readme-body.markdown-body h1 {
+  text-align: left;
+  border-bottom: 1px solid #21262d;
+  padding-bottom: 0.3rem;
+}
+
+.sim-readme-body.markdown-body h3 {
+  text-align: left;
+}
+
