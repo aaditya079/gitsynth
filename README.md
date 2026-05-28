@@ -70,4 +70,13 @@ To run the customizer application locally on your computer:
 
 ---
 
+## 🛡️ AI Training Protection Policy
+
+To protect creative code work and design systems from uncompensated learning, this repository employs proactive defenses:
+- **`robots.txt`**: Strict block policies disallowing scraping by `GPTBot`, `ClaudeBot`, `Google-Extended`, `Bytespider`, `CCBot`, and other major AI data extraction crawlers.
+- **Header Meta Protection**: Active `noai` and `noimageai` declaration directives embedded within all dashboard structures.
+- **License Constraint**: Content and software designs in this repository are strictly prohibited from being crawled, parsed, or collected for LLM or AI model training datasets without prior written authorization.
+
+---
+
 ⭐ Developed with passion for premium developer experiences. Make your GitHub profile shine!
